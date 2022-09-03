@@ -20,6 +20,13 @@ export default{
         author: this.author
       })
       console.log(res);
+      this.clearData();
+    },
+    clearData(){
+      this.title = '';
+      this.description = '';
+      this.body = '';
+      this.author = '';
     }
   }
 }

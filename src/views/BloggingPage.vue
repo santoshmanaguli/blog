@@ -1,8 +1,24 @@
 <template>
     <div>
-        <h3>
-
-        </h3>
+        <div>
+            <H3 class="d-flex justify-content-center">
+                <b>
+                    {{data1.title}}
+                </b>
+            </H3>
+        </div>
+        <div class="container">
+            <div class="row">
+                Author - {{data1.author}}
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 m-5">
+                    {{data1.content}}
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -17,12 +33,13 @@ export default{
     name: 'BloggingPage',
     data(){
         return{
-            data = null
+            data1: ''
         }
     },
-    mounted(){
-        let res = axios.get('http://localhost:3000/blog' + this.$route.params.id)
-        this.data = res.data
+    async mounted(){
+        let res = await axios.get('http://localhost:3000/blog/' + this.$route.params.id)
+        this.data1 = res.data
+        console.log(res);
     }
 }
 </script>

@@ -6,7 +6,9 @@
       <div class="card-body">
         <h5 class="card-title">{{obj.description}}</h5>
         <p class="card-text">{{obj.content.length > 30 ? obj.content.slice(0, 30) + '...' : obj.content}}</p>
-        <router-link href="#" class="btn btn-primary" @click="onOpen" :to="'/blogs/'+obj.id">Open</router-link>
+        <router-link href="#" class="btn btn-primary mx-3" :to="'/blog/'+obj.id">Open</router-link>
+        <router-link href="#" class="btn btn-success mx-3" :to="'/update/'+obj.id">Update</router-link>
+        <button class="btn btn-danger mx-3" @click="onDelete(obj.id)">Delete</button>
       </div>
     </div>
   </div>
@@ -24,12 +26,25 @@ export default{
     }
   },
   methods: {
-    
+    async onDelete(id){
+      if(confirm("Are you sure?")){
+        let result = await axios.delete("http://localhost:3000/blog/" + id);
+        console.warn(result)
+      if (result.status === 200) {
+        this.loadData()
+      }
+      }else{
+        console.log("")
+      }
+    },
+    async loadData(){
+      let res = await axios.get("http://localhost:3000/blog");
+      console.log(res.data);
+      this.blogData = res.data
+    }
   },
-  async mounted(){
-    let res = await axios.get("http://localhost:3000/blog");
-    console.log(res.data);
-    this.blogData = res.data
+  mounted(){
+    this.loadData();  
   }
 }
 </script>
