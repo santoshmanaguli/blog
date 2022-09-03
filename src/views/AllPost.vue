@@ -6,7 +6,7 @@
       <div class="card-body">
         <h5 class="card-title">{{obj.description}}</h5>
         <p class="card-text">{{obj.content.length > 30 ? obj.content.slice(0, 30) + '...' : obj.content}}</p>
-        <a href="#" class="btn btn-primary" @click="onOpen">Open</a>
+        <router-link href="#" class="btn btn-primary" @click="onOpen" :to="'/blogs/'+obj.id">Open</router-link>
       </div>
     </div>
   </div>

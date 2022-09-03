@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppHeader from '../components/AppHeader.vue'
 import HomeView from '../views/HomeView.vue'
+import BloggingPage from '../views/BloggingPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'AppHeader',
-    //   component: AppHeader
-    // },
+    {
+      path: `/blogs/:id`,
+      name: 'BloggingPage',
+      component: BloggingPage
+    },
     {
       path: '/home',
       name: 'HomeView',
